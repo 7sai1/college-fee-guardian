@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -12,6 +13,9 @@ import AdminReports from "./pages/AdminReports";
 import NotFound from "./pages/NotFound";
 import FinanceReports from "./pages/FinanceReports";
 import FeeSettings from "./pages/FeeSettings";
+import StudentPaymentsReport from "./pages/StudentPaymentsReport";
+import OverdueReport from "./pages/OverdueReport";
+import FinancialAidReport from "./pages/FinancialAidReport";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +33,9 @@ const App = () => (
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/reports" element={<AdminReports />} />
           <Route path="/admin/finance-reports" element={<FinanceReports />} />
+          <Route path="/admin/finance-reports/student-payments" element={<StudentPaymentsReport />} />
+          <Route path="/admin/finance-reports/overdue" element={<OverdueReport />} />
+          <Route path="/admin/finance-reports/aid" element={<FinancialAidReport />} />
           <Route path="/admin/settings" element={<FeeSettings />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -1,3 +1,4 @@
+
 import { 
   CreditCard, 
   DollarSign, 
@@ -6,7 +7,10 @@ import {
   Library, 
   Receipt, 
   Settings, 
-  Users 
+  Users,
+  FileChartColumn,
+  FileChartLine,
+  FileChartPie
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -112,6 +116,37 @@ export function AppSidebar() {
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
+                  <Link to="/admin/finance-reports/student-payments">
+                    <FileChartColumn className="h-5 w-5" />
+                    <span>Student Payments</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <Link to="/admin/finance-reports/overdue">
+                    <FileChartLine className="h-5 w-5" />
+                    <span>Overdue Report</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <Link to="/admin/finance-reports/aid">
+                    <FileChartPie className="h-5 w-5" />
+                    <span>Financial Aid Report</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+        <SidebarGroup>
+          <SidebarGroupLabel>Other</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
                   <Link to="/admin/finance-reports">
                     <Library className="h-5 w-5" />
                     <span>Preview Reports</span>
@@ -125,3 +160,4 @@ export function AppSidebar() {
     </Sidebar>
   );
 }
+
