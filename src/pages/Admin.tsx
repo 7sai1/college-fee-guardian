@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Layout } from "@/components/layout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,8 +10,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Search, Filter, PlusCircle, Download, MoveDown, Eye, Edit, Trash2 } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
-// Sample data for demonstration
 const students = [
   { id: "ST10045", name: "Emma Johnson", email: "emma.j@carrier.edu", program: "Computer Science", year: "Junior", balance: 2500, status: "Good Standing" },
   { id: "ST10078", name: "Jason Miller", email: "j.miller@carrier.edu", program: "Business Administration", year: "Sophomore", balance: 4800, status: "Payment Due" },
@@ -27,11 +26,21 @@ const students = [
 const Admin = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState<any>(null);
+  const { toast } = useToast();
 
   const handleViewStudent = (student: any) => {
     setSelectedStudent(student);
     setDialogOpen(true);
   };
+
+  const handleExport = () =>
+    toast({ title: "Export", description: "Export functionality coming soon!", duration: 2200 });
+  const handleAddStudent = () =>
+    toast({ title: "Add Student", description: "Feature coming soon!", duration: 2200 });
+  const handleFilter = () =>
+    toast({ title: "Filter", description: "Filtering coming soon!", duration: 2200 });
+  const handleStudentAction = (action: string) =>
+    toast({ title: action, description: "This action will work after connecting with Supabase.", duration: 2500 });
 
   return (
     <Layout>
@@ -44,11 +53,11 @@ const Admin = () => {
                 <CardDescription>Manage student financial records</CardDescription>
               </div>
               <div className="flex flex-wrap gap-2">
-                <Button variant="outline" className="gap-2">
+                <Button variant="outline" className="gap-2" onClick={handleExport}>
                   <Download className="h-4 w-4" />
                   <span>Export</span>
                 </Button>
-                <Button className="gap-2">
+                <Button className="gap-2" onClick={handleAddStudent}>
                   <PlusCircle className="h-4 w-4" />
                   <span>Add Student</span>
                 </Button>
@@ -74,7 +83,7 @@ const Admin = () => {
                       className="pl-8 w-[200px] sm:w-[300px]"
                     />
                   </div>
-                  <Button variant="outline" size="icon">
+                  <Button variant="outline" size="icon" onClick={handleFilter}>
                     <Filter className="h-4 w-4" />
                   </Button>
                 </div>
@@ -124,11 +133,11 @@ const Admin = () => {
                                 <Eye className="h-4 w-4" />
                                 <span className="sr-only">View</span>
                               </Button>
-                              <Button variant="ghost" size="icon">
+                              <Button variant="ghost" size="icon" onClick={() => handleStudentAction("Edit")}>
                                 <Edit className="h-4 w-4" />
                                 <span className="sr-only">Edit</span>
                               </Button>
-                              <Button variant="ghost" size="icon">
+                              <Button variant="ghost" size="icon" onClick={() => handleStudentAction("Payments")}>
                                 <MoveDown className="h-4 w-4" />
                                 <span className="sr-only">Payments</span>
                               </Button>
@@ -194,11 +203,11 @@ const Admin = () => {
                                 <Eye className="h-4 w-4" />
                                 <span className="sr-only">View</span>
                               </Button>
-                              <Button variant="ghost" size="icon">
+                              <Button variant="ghost" size="icon" onClick={() => handleStudentAction("Edit")}>
                                 <Edit className="h-4 w-4" />
                                 <span className="sr-only">Edit</span>
                               </Button>
-                              <Button variant="ghost" size="icon">
+                              <Button variant="ghost" size="icon" onClick={() => handleStudentAction("Payments")}>
                                 <MoveDown className="h-4 w-4" />
                                 <span className="sr-only">Payments</span>
                               </Button>
@@ -250,11 +259,11 @@ const Admin = () => {
                                 <Eye className="h-4 w-4" />
                                 <span className="sr-only">View</span>
                               </Button>
-                              <Button variant="ghost" size="icon">
+                              <Button variant="ghost" size="icon" onClick={() => handleStudentAction("Edit")}>
                                 <Edit className="h-4 w-4" />
                                 <span className="sr-only">Edit</span>
                               </Button>
-                              <Button variant="ghost" size="icon">
+                              <Button variant="ghost" size="icon" onClick={() => handleStudentAction("Payments")}>
                                 <MoveDown className="h-4 w-4" />
                                 <span className="sr-only">Payments</span>
                               </Button>
@@ -306,11 +315,11 @@ const Admin = () => {
                                 <Eye className="h-4 w-4" />
                                 <span className="sr-only">View</span>
                               </Button>
-                              <Button variant="ghost" size="icon">
+                              <Button variant="ghost" size="icon" onClick={() => handleStudentAction("Edit")}>
                                 <Edit className="h-4 w-4" />
                                 <span className="sr-only">Edit</span>
                               </Button>
-                              <Button variant="ghost" size="icon">
+                              <Button variant="ghost" size="icon" onClick={() => handleStudentAction("Payments")}>
                                 <MoveDown className="h-4 w-4" />
                                 <span className="sr-only">Payments</span>
                               </Button>
@@ -405,7 +414,7 @@ const Admin = () => {
                           <SelectItem value="adjustment">Adjustment</SelectItem>
                         </SelectContent>
                       </Select>
-                      <Button>Apply</Button>
+                      <Button onClick={() => handleStudentAction("Apply Payment")}>Apply</Button>
                     </div>
                   </div>
                   
@@ -421,13 +430,13 @@ const Admin = () => {
                   <h3 className="font-medium">Account Actions</h3>
                 </div>
                 <div className="p-4 flex flex-wrap gap-2">
-                  <Button variant="outline">Email Statement</Button>
-                  <Button variant="outline">Payment Plan</Button>
-                  <Button variant="outline">View History</Button>
+                  <Button variant="outline" onClick={() => handleStudentAction("Email Statement")}>Email Statement</Button>
+                  <Button variant="outline" onClick={() => handleStudentAction("Payment Plan")}>Payment Plan</Button>
+                  <Button variant="outline" onClick={() => handleStudentAction("View History")}>View History</Button>
                   {selectedStudent.status === "Financial Hold" ? (
-                    <Button variant="outline">Remove Hold</Button>
+                    <Button variant="outline" onClick={() => handleStudentAction("Remove Hold")}>Remove Hold</Button>
                   ) : (
-                    <Button variant="outline">Apply Hold</Button>
+                    <Button variant="outline" onClick={() => handleStudentAction("Apply Hold")}>Apply Hold</Button>
                   )}
                 </div>
               </div>
@@ -436,7 +445,7 @@ const Admin = () => {
                 <Button variant="outline" onClick={() => setDialogOpen(false)}>
                   Close
                 </Button>
-                <Button>Save Changes</Button>
+                <Button onClick={() => handleStudentAction("Save Changes")}>Save Changes</Button>
               </DialogFooter>
             </>
           )}

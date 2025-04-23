@@ -1,4 +1,3 @@
-
 import { Layout } from "@/components/layout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -20,8 +19,8 @@ import {
   LineChart,
   Line,
 } from "recharts";
+import { useToast } from "@/hooks/use-toast";
 
-// Sample data for demonstration
 const revenueData = [
   { month: "Jan", tuition: 425000, housing: 180000, fees: 45000, books: 28000 },
   { month: "Feb", tuition: 15000, housing: 5000, fees: 2000, books: 18000 },
@@ -63,6 +62,12 @@ const programRevenueData = [
 const COLORS = ["#0284c7", "#7dd3fc", "#0369a1", "#38bdf8", "#0ea5e9", "#bae6fd"];
 
 const AdminReports = () => {
+  const { toast } = useToast();
+  const handlePrint = () =>
+    toast({ title: "Print", description: "Printing coming soon!", duration: 2200 });
+  const handleExport = () =>
+    toast({ title: "Export", description: "Export coming soon!", duration: 2200 });
+
   return (
     <Layout>
       <div className="grid gap-6">
@@ -70,7 +75,7 @@ const AdminReports = () => {
           <CardHeader>
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <CardTitle>Financial Reports</CardTitle>
+                <CardTitle>Finance Dashboard</CardTitle>
                 <CardDescription>Revenue and payment analytics</CardDescription>
               </div>
               <div className="flex flex-wrap gap-2">
@@ -84,11 +89,11 @@ const AdminReports = () => {
                     <SelectItem value="2023">2023</SelectItem>
                   </SelectContent>
                 </Select>
-                <Button variant="outline" className="gap-2">
+                <Button variant="outline" className="gap-2" onClick={handlePrint}>
                   <Printer className="h-4 w-4" />
                   <span>Print</span>
                 </Button>
-                <Button variant="outline" className="gap-2">
+                <Button variant="outline" className="gap-2" onClick={handleExport}>
                   <Download className="h-4 w-4" />
                   <span>Export</span>
                 </Button>

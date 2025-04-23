@@ -1,4 +1,3 @@
-
 import { 
   CreditCard, 
   DollarSign, 
@@ -92,7 +91,7 @@ export function AppSidebar() {
                 <SidebarMenuButton asChild>
                   <Link to="/admin/reports">
                     <Library className="h-5 w-5" />
-                    <span>Financial Reports</span>
+                    <span>Finance Dashboard</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -101,6 +100,21 @@ export function AppSidebar() {
                   <Link to="/admin/settings">
                     <Settings className="h-5 w-5" />
                     <span>Fee Settings</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+        <SidebarGroup>
+          <SidebarGroupLabel>Finance Reports</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <Link to="/admin/finance-reports">
+                    <Library className="h-5 w-5" />
+                    <span>Preview Reports</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
